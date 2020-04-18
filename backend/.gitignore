@@ -1,7 +1,7 @@
-moviebase.db
 .vscode
 __pycache__
 
+project/moviebase.db
 project/__pycache__
 project/models/__pycache__
 project/routes/__pycache__
