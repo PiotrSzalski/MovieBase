@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'app/variables';
+@font-face {
+    font-family: "CustomFont";
+    src: url("assets//fonts/orange\ juice\ 2.0.ttf");
+}
 
 app-root {
     display: flex;
@@ -6,10 +10,21 @@ app-root {
     height: 100vh;
 }
 
-app-main-page {
+app-main-page,
+app-login-page {
     flex: 1 1 100%;
 }
 
 app-nav-bar {
     flex: 0 1 auto;
+}
+
+main {
+    height: 100%;
+    background: $blue-background;
+    background: radial-gradient(circle, $blue-background 32%, $dark 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }

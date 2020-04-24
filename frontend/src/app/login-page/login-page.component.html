@@ -1,44 +1,49 @@
-<div *ngIf="!registerMode">
-    <h1>Logowanie</h1>
-    <form>
-      <div>
-        <label for="username">Nazwa użytkownika:</label>
-        <input type="text" id="username" required>
-      </div>
+<main>
+    <div class="mycard" *ngIf="!registerMode">
+        <h1>Logowanie</h1>
+        <form>
+            <div>
+                <label for="username">Nazwa użytkownika</label>
+                <input type="text" id="username" required>
+            </div>
 
-      <div>
-        <label for="password">Hasło</label>
-        <input type="password" id="password" required>
-      </div>
-      <p>{{error}}</p>
-      <button (click)="login()" type="button">Zaloguj</button>
-      <p>Nie masz konta?</p>
-      <button (click)="registerModeChange(true)" type="button">Zarejestuj</button>
-    </form>
-</div>
+            <div>
+                <label for="password">Hasło</label>
+                <input type="password" id="password" required>
+            </div>
+            <p class="error"> {{error}} </p>
+        </form>
+        <button class="btn btn-outline-dark btn-sm action" (click)="login()" type="button">Zaloguj</button>
+        <div class="return">
+            <p>Nie masz konta? <span class="link" (click)="registerModeChange(true)">Zarejestuj się</span></p>
+        </div>
+    </div>
 
-<div *ngIf="registerMode">
-  <h1>Rejestracja</h1>
-  <form>
-    <div>
-      <label for="username">Nazwa użytkownika:</label>
-      <input type="text" id="username" required>
+    <div class="mycard" *ngIf="registerMode">
+        <h1>Rejestracja</h1>
+        <form>
+            <div>
+                <label for="username">Nazwa użytkownika:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div>
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div>
+                <label for="password1">Hasło:</label>
+                <input type="password" id="password1" required>
+            </div>
+            <div>
+                <label for="password2">Powtórz hasło:</label>
+                <input type="password" id="password2" required>
+            </div>
+            <p class="error">{{error}}</p>
+        </form>
+        <button class="btn btn-outline-dark btn-sm action" (click)="register()" type="button">Zarejestruj się</button>
+        <div class="return">
+            <p>Masz konto? <span class="link" (click)="registerModeChange(false)">Zaloguj się</span></p>
+        </div>
+
     </div>
-    <div>
-      <label for="email">E-Mail:</label>
-      <input type="email" id="email" required>
-    </div>
-    <div>
-      <label for="password1">Hasło:</label>
-      <input type="password" id="password1" required>
-    </div>
-    <div>
-      <label for="password2">Powtórz hasło:</label>
-      <input type="password" id="password2" required>
-    </div>
-    <p>{{error}}</p>
-    <button (click)="register()" type="button">Zarejesruj się</button>
-    <p>Masz konto?</p>
-    <button (click)="registerModeChange(false)" type="button">Zaloguj</button>
-  </form>
-</div>
+</main>

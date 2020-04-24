@@ -1,35 +1,34 @@
 @import '../variables';
-main {
-    height: 100%;
-    background: $blue-background;
-    background: radial-gradient(circle, $blue-background 32%, $dark 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    font-family: sans-serif;
-    h1 {
-        text-align: center;
-        text-transform: uppercase;
-        color: $white;
-    }
-    .explanation {
-        color: #1a191998;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: thin;
-    }
-    .yellow {
-        color: $yellow;
-    }
-    .blue {
-        color: $blue-bright;
-    }
-    .white {
-        color: $white;
-    }
-    i {
-        margin: 40px 40px;
-        font-size: 40px;
-        color: white;
-    }
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    color: $white;
+    font-family: 'CustomFont';
+    font-size: 4em;
+}
+
+.explanation {
+    color: #1a1919ef;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'CustomFont';
+    font-size: 3em;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.blue {
+    color: $blue-bright;
+}
+
+.white {
+    color: $white;
+}
+
+i {
+    margin: 40px 40px;
+    font-size: 1em;
+    color: white;
 }

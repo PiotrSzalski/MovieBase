@@ -1,0 +1,41 @@
+@import '../variables';
+.mycard {
+    position: relative;
+    text-align: left;
+    border: 2px solid $yellow;
+    background-color: $white;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    padding-right: 30px;
+    padding-left: 30px;
+    h1 {
+        text-align: center;
+        font-family: 'CustomFont';
+        color: $dark;
+    }
+    .link {
+        color: $blue-bright;
+        text-decoration: underline;
+    }
+    .action {
+        position: absolute;
+        right: 0;
+        margin-right: 10px;
+    }
+    .return {
+        padding-top: 30px;
+    }
+    .error {
+        color: red;
+    }
+    input {
+        margin-left: 10px;
+        border-radius: 20px;
+        border: none;
+        background-color: rgba(250, 250, 250, 0.863);
+        -webkit-box-shadow: 5px 5px 5px 0px $blue-background;
+        -moz-box-shadow: 5px 5px 5px 0px $blue-background;
+        box-shadow: 5px 5px 5px 0px $blue-background;
+    }
+}
