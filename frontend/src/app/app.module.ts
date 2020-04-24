@@ -8,12 +8,14 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { PropositionsComponent } from './propositions/propositions.component'
+import { PropositionsComponent } from './propositions/propositions.component';
+import { SearchComponent } from './search/search.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'propositions', component: PropositionsComponent },
-  { path: '', component: MainPageComponent }
+  { path: '', component: MainPageComponent },
+  {path: 'search', component: SearchComponent}
 ];
 
 @NgModule({
@@ -22,7 +24,8 @@ const routes: Routes = [
     LoginPageComponent,
     MainPageComponent,
     NavBarComponent,
-    PropositionsComponent
+    PropositionsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ export class NavBarComponent implements OnInit {
   private user: string
   private loginSubscription: Subscription;
 
+  
   constructor(private api: ApiService, private router: Router, private loginService: LoginService) { 
     this.logged = false;
     this.user = "";
@@ -59,6 +60,14 @@ export class NavBarComponent implements OnInit {
           this.router.navigate(['/']);
         }
       });
+    }
+  }
+
+  search() {
+    if(this.logged) {
+      this.router.navigate(['/search']);
+    } else {
+      this.router.navigate(['/login']);
     }
   }
 
