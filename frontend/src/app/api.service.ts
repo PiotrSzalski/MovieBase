@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +48,14 @@ export class ApiService {
       })
     };
     return this.http.get(this.baseURL + "/status", httpOptions)
+  }
+
+  public search(token, phrase) {
+    const httpOptions = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        });
+    const httpParams = new HttpParams().set("title", phrase)
+    return this.http.get(this.baseURL + "/search", {headers: httpOptions, params: httpParams})
   }
 }

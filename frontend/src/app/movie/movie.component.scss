@@ -1,0 +1,63 @@
+@import '../login-page/login-page.component';
+img {
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    top: 0;
+}
+
+.mycard {
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 30px;
+    padding-left: 10px;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    text-align: left;
+    margin-left: 20px;
+    h3 {
+        margin-left: 10px;
+    }
+}
+
+.underTitle {
+    span {
+        font-size: 0.75em;
+        margin-left: 10px;
+    }
+    p {
+        border-top: 1px solid black;
+        padding-top: 10px;
+        margin-left: 10px;
+        line-height: 20px;
+    }
+}
+
+.center {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+    .title {
+        margin-left: 10px;
+        font-size: 0.8em;
+        padding-right: 10px;
+        color: rgb(161, 161, 161);
+    }
+    div {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
+}
