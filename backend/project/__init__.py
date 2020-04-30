@@ -12,3 +12,6 @@ jwt = JWTManager(flask_app)
 
 from project.routes.auth import auth
 flask_app.register_blueprint(auth)
+
+from project.routes.action import action
+flask_app.register_blueprint(action)
