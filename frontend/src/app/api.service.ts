@@ -29,7 +29,7 @@ export class ApiService {
         })
       };
       return this.http.get(this.baseURL + "/logout", httpOptions)
-  } 
+  }
 
   public register(data) {
     const httpOptions = {
@@ -57,5 +57,24 @@ export class ApiService {
         });
     const httpParams = new HttpParams().set("title", phrase)
     return this.http.get(this.baseURL + "/search", {headers: httpOptions, params: httpParams})
+  }
+
+  public rate(token, rating, imdbID) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    return this.http.post<string>(this.baseURL + '/rate', {rating, imdbID}, httpOptions);
+  }
+
+  public get_rate(token, imdbID) {
+    const httpOptions = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        });
+    const httpParams = new HttpParams().set('imdbID', imdbID);
+    return this.http.get(this.baseURL + '/rate', {headers: httpOptions, params: httpParams});
   }
 }

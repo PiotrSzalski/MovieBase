@@ -10,7 +10,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PropositionsComponent } from './propositions/propositions.component';
 import { SearchComponent } from './search/search.component';
-import { MovieComponent } from './movie/movie.component'
+import { MovieComponent } from './movie/movie.component';
+import { RatingComponent } from './rating/rating.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
     NavBarComponent,
     PropositionsComponent,
     SearchComponent,
-    MovieComponent
+    MovieComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

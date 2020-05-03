@@ -4,7 +4,7 @@
         <form>
             <div class="wrap">
                 <span>
-                <input type="text" id="movieSearch" required>       
+                <input type="text" id="movieSearch" required>
                 <button class="btn btn-outline-dark btn-sm " (click)="search()" type="button">Szukaj</button>
             </span>
             </div>
@@ -13,7 +13,8 @@
     </div>
     <ul>
         <li *ngFor="let movie of moviesFound">
-            <app-movie [movie]="movie"></app-movie>
+          <app-movie [movie]="movie"></app-movie>
+          <app-rating [movie]="movie"></app-rating>
         </li>
     </ul>
 </main>
