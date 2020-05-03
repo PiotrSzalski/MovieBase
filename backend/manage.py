@@ -2,6 +2,7 @@ from flask_script import Manager
 from project import flask_app, db
 from project.models.movie import Movie
 from project.models.link import Link
+from project.models.rating import Rating
 import csv
 
 manager = Manager(flask_app)
@@ -9,6 +10,7 @@ manager = Manager(flask_app)
 @manager.command
 def create_db():
     """Creates the db tables."""
+    drop_db()
     db.create_all()
     load_movies()
     load_links()
