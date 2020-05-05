@@ -38,11 +38,26 @@ def rate():
     query2 = "INSERT INTO ratings VALUES (?,?,?) ON CONFLICT(user_id,movie_id) DO UPDATE SET rating=(?);"
     result = db.engine.execute(query2, user_id, movie_id, rating, rating)
 
-    return json.dumps([{'new_rating': rating}])
+    return json.dumps({'new_rating': rating})
 
 
 @action.route('/rate', methods=['GET'])
 def get_rate():
-    json_data = request.json
-    print(json_data)
-    return json.dumps([{'rating': 5}])
+    username = decode_token(request.headers.get('Authorization')).get('identity')
+    imdbID = request.args.get('imdbID')[2:]
+
+    query = "SELECT movie_id FROM links WHERE imdbID = (?) ;"
+    result = db.engine.execute(query, imdbID)
+    resultset = [dict(row) for row in result]
+    if resultset:
+        movie_id = resultset[0]['movie_id']
+
+        user = User.query.filter(User.username == username).first()
+        user_id = user.id
+
+        rating = Rating.query.filter(Rating.user_id == user_id).filter(Rating.movie_id == movie_id).first()
+        if rating:
+            return json.dumps([{'rating': rating.rating}])
+        else:
+            return json.dumps([{'rating': 0}])
+    return json.dumps([{'rating': 0}])

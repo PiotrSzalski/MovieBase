@@ -12,9 +12,9 @@
         </form>
     </div>
     <ul>
-        <li *ngFor="let movie of moviesFound">
-          <app-movie [movie]="movie"></app-movie>
-          <app-rating [movie]="movie"></app-rating>
+        <li *ngFor="let movie of moviesFound, index as i">
+          <app-movie [movie]="movie" ></app-movie>
+          <app-rating [movie]="movie" [rating]="0"></app-rating>
         </li>
     </ul>
 </main>

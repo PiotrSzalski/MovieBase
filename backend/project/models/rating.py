@@ -14,4 +14,4 @@ class Rating(db.Model):
         self.rating = rating
 
     def __repr__(self):
-        return '<Rating %r %r>' % self.id
+        return f'<Rating {self.user_id} {self.movie_id}>'

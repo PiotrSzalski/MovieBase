@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, DoCheck} from '@angular/core';
 import {ImbdMovie} from '../models/ImbdMovie';
-import {ApiService} from "../api.service";
+import {ApiService} from '../api.service';
+
 
 
 @Component({
@@ -11,27 +12,34 @@ import {ApiService} from "../api.service";
 export class RatingComponent implements OnInit {
 
   @Input() movie: ImbdMovie;
+  @Input() rating: number;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) {}
+
   ngOnInit() {
-
-  }
-
-  public getRatingFromServer() {
-    const token = localStorage.getItem('token');
-    const imdbID = this.movie.imdbID;
-    this.api.get_rate(token, imdbID).subscribe( res => {
-      console.log(res);
-    });
+    this.getRatingFromDB();
   }
 
   public handleChange(rating) {
     const token = localStorage.getItem('token');
     const imdbID = this.movie.imdbID;
-    this.api.rate(token, rating, imdbID).subscribe(res => {
-      console.log(res);
-    });
+    this.api.rate(token, rating, imdbID).subscribe(res => {});
+    this.rating = rating;
   }
 
+  private getRatingFromDB() {
+    const token = localStorage.getItem('token');
+    this.rating = 0;
+    this.api.get_rate(token, this.movie.imdbID).subscribe(res =>
+      this.onRatingLoad(res[0].rating));
+  }
+
+  private onRatingLoad(rating) {
+    this.rating = rating;
+    const inputElement = document.getElementById(this.movie.imdbID + '-' + rating) as HTMLInputElement;
+    if (inputElement) {
+      inputElement.checked = true;
+    }
+  }
 
 }

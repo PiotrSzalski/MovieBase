@@ -17,7 +17,7 @@ export class SearchComponent {
   constructor(private api: ApiService, private imbdService: ImbdService) { }
 
   public search() {
-    this.moviesFound = new Array<ImbdMovie>();
+    this.moviesIDs = new Array<string>();
     const phrase = (<HTMLInputElement>document.getElementById("movieSearch")).value;
     const token = localStorage.getItem("token");
     if (phrase === '') {
@@ -39,6 +39,7 @@ export class SearchComponent {
   }
 
   private getDataFromImdbApi() {
+    this.moviesFound = new Array<ImbdMovie>();
     this.moviesIDs.forEach(id => {
       this.imbdService.getMovie(id).subscribe(res =>
         this.moviesFound.push(Object.assign(new ImbdMovie(), res))

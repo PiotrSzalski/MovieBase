@@ -1,15 +1,24 @@
-<div class="mycard">
+<div class="mycard-{{movie.imdbID}}">
   <div class="rating">
-    <input type="radio" name="rating" value="5" id="5" (change)="handleChange(5)">
-    <label for="5">☆</label>
-    <input type="radio" name="rating" value="4" id="4" (change)="handleChange(4)">
-    <label for="4">☆</label>
-    <input type="radio" name="rating" value="3" id="3" (change)="handleChange(3)">
-    <label for="3">☆</label>
-    <input type="radio" name="rating" value="2" id="2" (change)="handleChange(2)">
-    <label for="2">☆</label>
-    <input type="radio" name="rating" value="1" id="1" (change)="handleChange(1)">
-    <label for="1">☆</label>
+    <input type="radio" name="rating-{{movie.imdbID}}-5" value="5" id="{{movie.imdbID}}-5" (change)="handleChange(5)"
+    [checked]="rating == 5" >
+    <label for="{{movie.imdbID}}-5">☆</label>
+
+    <input type="radio" name="rating-{{movie.imdbID}}-4" value="4" id="{{movie.imdbID}}-4" (change)="handleChange(4)"
+    [checked]="rating == 4">
+    <label for="{{movie.imdbID}}-4">☆</label>
+
+    <input type="radio" name="rating-{{movie.imdbID}}-3" value="3" id="{{movie.imdbID}}-3" (change)="handleChange(3)"
+    [checked]="rating == 3">
+    <label for="{{movie.imdbID}}-3">☆</label>
+
+    <input type="radio" name="rating-{{movie.imdbID}}-2" value="2" id="{{movie.imdbID}}-2" (change)="handleChange(2)"
+    [checked]="rating == 2">
+    <label for="{{movie.imdbID}}-2">☆</label>
+
+    <input type="radio" name="rating-{{movie.imdbID}}-5" value="1" id="{{movie.imdbID}}-1" (change)="handleChange(1)"
+    [checked]="rating == 1">
+    <label for="{{movie.imdbID}}-1">☆</label>
   </div>
 </div>
 
