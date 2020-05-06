@@ -29,7 +29,7 @@ export class ApiService {
         })
       };
       return this.http.get(this.baseURL + "/logout", httpOptions)
-  } 
+  }
 
   public register(data) {
     const httpOptions = {
@@ -84,8 +84,18 @@ export class ApiService {
       'Content-Type': 'application/json',
       'Authorization': token
     });
-    const httpParams = new HttpParams().set("movieId", movieId)
+    const httpParams = new HttpParams().set("movieId", movieId);
     return this.http.get(this.baseURL + "/rate", {headers: httpOptions, params: httpParams})
+  }
+
+  public getMyRates(token) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        })
+      };
+    return this.http.get(this.baseURL + "/rates", httpOptions);
   }
 
 }

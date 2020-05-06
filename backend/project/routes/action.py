@@ -48,4 +48,21 @@ def getRate():
     except Exception as e:
         print(str(e))
         return { "rate": 0 }
+
+
+@action.route('/rates', methods=['GET'])
+def getMyRates():
+    try:
+        user_id = decode_token(request.headers.get('Authorization')).get('identity')
+        user_rates = db.session.query(Rate.rate, Link.imdbID).filter_by(user_id=user_id).filter(Rate.movie_id == Link.movie_id).all()
+        resultset = [{'imdbID': imdbIDnumber, 'rate': rate} for rate, imdbIDnumber in user_rates]
+        resultset = json.dumps(resultset)
+
+        if resultset:
+            return { "rates": resultset }
+        else:
+            return { "rates": []}
+    except Exception as e:
+        print(str(e))
+        return { "rate": [] }
     

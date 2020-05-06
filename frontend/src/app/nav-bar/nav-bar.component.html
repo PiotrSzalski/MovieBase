@@ -10,6 +10,9 @@
             <li class="nav-item">
                 <a class="nav-link" (click)="propositions()" style="cursor: pointer;">Propozycje</a>
             </li>
+          <li class="nav-item">
+                <a class="nav-link" (click)="rates()" style="cursor: pointer;">Oceny</a>
+            </li>
         </ul>
         <button class="btn btn-outline-light my-2 my-sm-0" *ngIf="!logged" (click)="login();" type="button">Zaloguj</button>
         <button class="btn btn-outline-light my-2 my-sm-0" *ngIf="logged" (click)="logout();" type="button">Wyloguj ({{user}})</button>

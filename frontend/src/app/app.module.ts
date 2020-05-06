@@ -12,13 +12,15 @@ import { PropositionsComponent } from './propositions/propositions.component';
 import { SearchComponent } from './search/search.component';
 import { MovieComponent } from './movie/movie.component';
 import { MoviePageComponent } from './movie-page/movie-page.component';
+import { MyRatingsPageComponent } from './my-ratings-page/my-ratings-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'propositions', component: PropositionsComponent },
   { path: '', component: MainPageComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'movie/:id', component: MoviePageComponent }
+  { path: 'movie/:id', component: MoviePageComponent },
+  { path: 'rates', component: MyRatingsPageComponent }
 ];
 
 @NgModule({
@@ -30,7 +32,8 @@ const routes: Routes = [
     PropositionsComponent,
     SearchComponent,
     MovieComponent,
-    MoviePageComponent
+    MoviePageComponent,
+    MyRatingsPageComponent
   ],
   imports: [
     BrowserModule,

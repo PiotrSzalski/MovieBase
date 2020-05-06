@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("assets//fonts/orange juice 2.0.ttf"); }
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; }
+
+app-main-page,
+app-login-page,
+app-search,
+app-propositions {
+  flex: 1 1 100%; }
+
+app-nav-bar {
+  flex: 0 1 auto; }
+
+main {
+  min-height: 100vh;
+  background: #254558;
+  background: radial-gradient(circle, #254558 32%, #2b2b3a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center; }
+
+/*# sourceMappingURL=styles.css.map */

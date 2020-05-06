@@ -18,8 +18,8 @@ export class NavBarComponent implements OnInit {
   private tokenExpirationTime = 900000;
 
 
-  
-  constructor(private api: ApiService, private router: Router, private loginService: LoginService) { 
+
+  constructor(private api: ApiService, private router: Router, private loginService: LoginService) {
     this.logged = false;
     this.user = "";
     this.loginSubscription = this.loginService.getLoggedUser().subscribe((user)=>{
@@ -34,7 +34,7 @@ export class NavBarComponent implements OnInit {
         if(res['logged']) {
           this.refresh();
           this.interval = setInterval(() => {
-            this.refresh(); 
+            this.refresh();
             }, this.tokenExpirationTime);
           this.logged = true;
           this.user = res['user'];
@@ -46,12 +46,12 @@ export class NavBarComponent implements OnInit {
       });
     }
   }
-  
+
   setLoggedUser(user) {
     this.logged = true;
     this.user = user;
     this.interval = setInterval(() => {
-      this.refresh(); 
+      this.refresh();
       }, this.tokenExpirationTime);
   }
 
@@ -67,7 +67,7 @@ export class NavBarComponent implements OnInit {
         localStorage.removeItem('token');
         this.router.navigate(['/']);
       }
-    }) 
+    })
   }
 
   login() {
@@ -100,6 +100,14 @@ export class NavBarComponent implements OnInit {
   propositions() {
     if(this.logged) {
       this.router.navigate(['/propositions']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  rates() {
+    if(this.logged) {
+      this.router.navigate(['/rates']);
     } else {
       this.router.navigate(['/login']);
     }
