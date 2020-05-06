@@ -2,6 +2,7 @@ from flask_script import Manager
 from project import flask_app, db
 from project.models.movie import Movie
 from project.models.link import Link
+from project.models.rate import Rate
 import csv
 
 manager = Manager(flask_app)

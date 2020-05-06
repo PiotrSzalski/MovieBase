@@ -12,4 +12,4 @@ class Link(db.Model):
         self.imdbID = imdbID
 
     def __repr__(self):
-        return '<Link %r>' % self.id
+        return '<Link %r>' % self.imdbID

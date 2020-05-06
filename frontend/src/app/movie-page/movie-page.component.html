@@ -1,0 +1,43 @@
+<main>
+    <div *ngIf="movie" class="mycard">
+        <div class="mycard_left">
+            <img src={{movie.Poster}}>
+        </div>
+        <div class="mycard_right">
+            <h1>{{movie.Title}}</h1>
+            <div class="mycard_right_details">
+                <ul>
+                    <li title="Released">{{movie.Released}}</li>
+                    <li title="Runtime">{{movie.Runtime}}</li>
+                    <li title="Genre">{{movie.Genre}}</li>
+                    <li title="Rating">{{movie.imdbRating}}/10</li>
+                    <li title="Director">{{movie.Director}}</li>
+                </ul>
+            </div>
+            <div class="mycard_right_review">
+                <p style="margin-bottom: 20px;">{{movie.Plot}}</p>
+                <p><span style="color: red">Actors:</span> {{movie.Actors}}</p>
+                <p><span style="color: red">Awards:</span> {{movie.Awards}}</p>
+                <p><span style="color: red">Writer:</span> {{movie.Writer}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="rating">
+        <h1>Oceń film</h1>
+        <div class="stars">
+            <form>
+                <input class="star star-5" id="star-5" type="radio" name="star"/>
+                <label class="star star-5" for="star-5" (click)="selectRate(5)"></label>
+                <input class="star star-4" id="star-4" type="radio" name="star"/>
+                <label class="star star-4" for="star-4" (click)="selectRate(4)"></label>
+                <input class="star star-3" id="star-3" type="radio" name="star"/>
+                <label class="star star-3" for="star-3" (click)="selectRate(3)"></label>
+                <input class="star star-2" id="star-2" type="radio" name="star"/>
+                <label class="star star-2" for="star-2" (click)="selectRate(2)"></label>
+                <input class="star star-1" id="star-1" type="radio" name="star"/>
+                <label class="star star-1" for="star-1" (click)="selectRate(1)"></label>
+            </form>
+        </div>
+        <p>{{rated}}</p>
+    </div>
+</main>

@@ -14,6 +14,9 @@ export class NavBarComponent implements OnInit {
   private logged: boolean
   private user: string
   private loginSubscription: Subscription;
+  private interval;
+  private tokenExpirationTime = 900000;
+
 
   
   constructor(private api: ApiService, private router: Router, private loginService: LoginService) { 
@@ -29,6 +32,10 @@ export class NavBarComponent implements OnInit {
     if(token !== null) {
       this.api.status(token).subscribe( res => {
         if(res['logged']) {
+          this.refresh();
+          this.interval = setInterval(() => {
+            this.refresh(); 
+            }, this.tokenExpirationTime);
           this.logged = true;
           this.user = res['user'];
         } else {
@@ -43,6 +50,24 @@ export class NavBarComponent implements OnInit {
   setLoggedUser(user) {
     this.logged = true;
     this.user = user;
+    this.interval = setInterval(() => {
+      this.refresh(); 
+      }, this.tokenExpirationTime);
+  }
+
+  refresh() {
+    const token = localStorage.getItem('token');
+    this.api.refresh(token).subscribe( res => {
+      if(Object.keys(res).length) {
+        localStorage.setItem("token", res["token"])
+      } else {
+        clearInterval(this.interval);
+        this.logged = false;
+        this.user = '';
+        localStorage.removeItem('token');
+        this.router.navigate(['/']);
+      }
+    }) 
   }
 
   login() {
@@ -54,6 +79,7 @@ export class NavBarComponent implements OnInit {
     if(this.logged && token !== null) {
       this.api.logout(token).subscribe( res => {
         if(res['logged_out']) {
+          clearInterval(this.interval);
           this.logged = false;
           this.user = '';
           localStorage.removeItem('token');

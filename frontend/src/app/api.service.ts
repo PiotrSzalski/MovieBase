@@ -58,4 +58,34 @@ export class ApiService {
     const httpParams = new HttpParams().set("title", phrase)
     return this.http.get(this.baseURL + "/search", {headers: httpOptions, params: httpParams})
   }
+
+  public refresh(token) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        })
+      };
+    return this.http.get(this.baseURL + "/refresh", httpOptions)
+  }
+
+  public sendRate(token, data) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    return this.http.post<string>(this.baseURL + "/rate", data, httpOptions)
+  }
+
+  public getRate(token, movieId) {
+    const httpOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    const httpParams = new HttpParams().set("movieId", movieId)
+    return this.http.get(this.baseURL + "/rate", {headers: httpOptions, params: httpParams})
+  }
+
 }

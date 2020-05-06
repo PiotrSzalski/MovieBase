@@ -22,7 +22,7 @@ app-nav-bar {
 }
 
 main {
-    height: 100%;
+    min-height:100vh;
     background: $blue-background;
     background: radial-gradient(circle, $blue-background 32%, $dark 100%);
     display: flex;

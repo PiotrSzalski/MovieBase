@@ -10,13 +10,15 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PropositionsComponent } from './propositions/propositions.component';
 import { SearchComponent } from './search/search.component';
-import { MovieComponent } from './movie/movie.component'
+import { MovieComponent } from './movie/movie.component';
+import { MoviePageComponent } from './movie-page/movie-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'propositions', component: PropositionsComponent },
   { path: '', component: MainPageComponent },
-  {path: 'search', component: SearchComponent}
+  { path: 'search', component: SearchComponent },
+  { path: 'movie/:id', component: MoviePageComponent }
 ];
 
 @NgModule({
@@ -27,7 +29,8 @@ const routes: Routes = [
     NavBarComponent,
     PropositionsComponent,
     SearchComponent,
-    MovieComponent
+    MovieComponent,
+    MoviePageComponent
   ],
   imports: [
     BrowserModule,

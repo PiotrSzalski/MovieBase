@@ -18,12 +18,13 @@ export class SearchComponent {
 
   public search() {
     this.moviesFound = new Array<ImbdMovie>();
+    this.moviesIDs = new Array<string>();
     const phrase = (<HTMLInputElement>document.getElementById("movieSearch")).value;
     const token = localStorage.getItem("token");
     if (phrase === '') {
       this.error = 'Nie podałeś tytułu!'
     } else {
-      this.api.search(token, phrase).subscribe(res => {
+      this.api.search(token, phrase).subscribe( (res) => {
         const list = Object.values(res);
         if (list.length > 0) {
           this.error = '';
@@ -34,17 +35,21 @@ export class SearchComponent {
         } else {
           this.error = 'Nie znaleziono żadnych tytułów ;('
         }
+      }, (err) => {
+        console.log(err);
+        this.error = 'Błąd API';
       });
     }
   }
 
   private getDataFromImdbApi() {
     this.moviesIDs.forEach(id => {
-      this.imbdService.getMovie(id).subscribe(res =>
+      this.imbdService.getMovie(id).subscribe( res => {
         this.moviesFound.push(Object.assign(new ImbdMovie(), res))
-      );
+      }, err => {
+        console.log(err);
+        this.error = 'Błąd zewnerznego API';
+      });
     });
-    console.log(this.moviesFound[0])
-    console.log(this.moviesFound.length)
   }
 }
