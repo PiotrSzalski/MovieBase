@@ -1,20 +1,11 @@
 <main>
     <div class="mycard">
         <h1>Oceny użytkownika </h1>
-        <form>
-            <div class="wrap">
-                <span>
-                <input type="text" id="movieSearch" required>
-                <button class="btn btn-outline-dark btn-sm " (click)="getMyRates()" type="button">Szukaj</button>
-            </span>
-            </div>
-            <p class="error"> {{error}} </p>
-        </form>
     </div>
     <ul>
         <li *ngFor="let movie of moviesFound, index as i">
             <div class="mycard">
-              <p> {{moviesRatings[i]}} </p>
+              <app-rating-stars [movieId]="movie.imdbID" [rate]="moviesRatings[i]" ></app-rating-stars>
               <app-movie [movie]="movie"></app-movie>
             </div>
         </li>

@@ -13,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 import { MovieComponent } from './movie/movie.component';
 import { MoviePageComponent } from './movie-page/movie-page.component';
 import { MyRatingsPageComponent } from './my-ratings-page/my-ratings-page.component';
+import { RatingStarsComponent } from './rating-stars/rating-stars.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
     SearchComponent,
     MovieComponent,
     MoviePageComponent,
-    MyRatingsPageComponent
+    MyRatingsPageComponent,
+    RatingStarsComponent
   ],
   imports: [
     BrowserModule,
