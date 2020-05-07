@@ -1,10 +1,10 @@
 <main>
     <div class="mycard">
         <h1>Wyszukaj film</h1>
-        <form>
+        <form (keydown.enter)="$event.preventDefault()">
             <div class="wrap">
                 <span>
-                <input type="text" id="movieSearch" required>       
+                <input type="text" id="movieSearch" (keydown.enter)="search()" required>       
                 <button class="btn btn-outline-dark btn-sm " (click)="search()" type="button">Szukaj</button>
             </span>
             </div>
