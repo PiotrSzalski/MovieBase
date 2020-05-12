@@ -4,9 +4,10 @@
     </div>
     <ul>
         <li *ngFor="let movie of moviesFound, index as i">
-            <div class="mycard">
-              <app-rating-stars [movieId]="movie.imdbID" [rate]="moviesRatings[i]" ></app-rating-stars>
-              <app-movie [movie]="movie"></app-movie>
+            <div class="mycard with-rating">
+                <app-movie [movie]="movie"></app-movie>
+                <app-rating-stars [customStyle]="smallRatingsStarsStyle" [movieId]="movie.imdbID" [rate]="moviesRatings[i]"></app-rating-stars>
+
             </div>
         </li>
     </ul>

@@ -1,5 +1,4 @@
 @import '../login-page/login-page.component';
-
 .mycard {
     width: 50%;
     padding: 10px;
@@ -25,8 +24,19 @@ ul {
     padding-left: 0;
     .mycard {
         width: 100%;
+        border: none;
     }
     li {
         margin-top: 30px;
     }
+}
+
+.with-rating {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+}
+
+app-rating-stars {
+    max-width: 100px;
 }

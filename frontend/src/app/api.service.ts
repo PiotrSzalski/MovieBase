@@ -98,4 +98,14 @@ export class ApiService {
     return this.http.get(this.baseURL + "/rates", httpOptions);
   }
 
+  public getTops(token) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        })
+      };
+    return this.http.get(this.baseURL + "/tops", httpOptions);
+  }
+
 }

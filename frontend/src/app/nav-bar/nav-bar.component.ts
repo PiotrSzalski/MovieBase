@@ -113,4 +113,12 @@ export class NavBarComponent implements OnInit {
     }
   }
 
+  top() {
+    if(this.logged) {
+      this.router.navigate(['/top']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
 }

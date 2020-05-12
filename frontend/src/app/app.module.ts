@@ -14,6 +14,7 @@ import { MovieComponent } from './movie/movie.component';
 import { MoviePageComponent } from './movie-page/movie-page.component';
 import { MyRatingsPageComponent } from './my-ratings-page/my-ratings-page.component';
 import { RatingStarsComponent } from './rating-stars/rating-stars.component';
+import { TopMoviesComponent } from './top-movies/top-movies.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'search', component: SearchComponent },
   { path: 'movie/:id', component: MoviePageComponent },
-  { path: 'rates', component: MyRatingsPageComponent }
+  { path: 'rates', component: MyRatingsPageComponent },
+  { path: 'top', component: TopMoviesComponent }
 ];
 
 @NgModule({
@@ -35,7 +37,8 @@ const routes: Routes = [
     MovieComponent,
     MoviePageComponent,
     MyRatingsPageComponent,
-    RatingStarsComponent
+    RatingStarsComponent,
+    TopMoviesComponent
   ],
   imports: [
     BrowserModule,

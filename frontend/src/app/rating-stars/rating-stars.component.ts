@@ -10,6 +10,8 @@ import {ApiService} from "../api.service";
 export class RatingStarsComponent implements OnInit {
   @Input() rate: number;
   @Input() movieId: string;
+  @Input() customStyle: {};
+
   private rated: string;
 
   constructor(private imbdService: ImbdService, private api: ApiService) { }
