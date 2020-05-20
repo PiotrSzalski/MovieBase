@@ -22,6 +22,7 @@ export class RatingStarsComponent implements OnInit {
   selectRate(rate) {
     const token = localStorage.getItem("token");
     this.rate = rate;
+    console.log("RATE SENT",rate,this.movieId)
     if(token) {
       const data = {
         imdbId: this.movieId.slice(2),

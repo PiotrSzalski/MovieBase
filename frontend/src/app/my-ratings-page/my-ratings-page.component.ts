@@ -11,8 +11,7 @@ import {ApiService} from '../api.service';
 export class MyRatingsPageComponent implements OnInit {
 
   private error: string;
-  private moviesIDs: Array<string> = new Array<string>();
-  private moviesRatings: Array<number> = new Array<number>();
+  private movieIdRating = new Map();
   public moviesFound: Array<ImbdMovie> = new Array<ImbdMovie>();
   public smallRatingsStarsStyle = {
     'font-size': "12px",
@@ -30,8 +29,7 @@ export class MyRatingsPageComponent implements OnInit {
       if (myRates.length > 0) {
           this.error = '';
           myRates.forEach(value => {
-            this.moviesIDs.push(value.imdbID as string);
-            this.moviesRatings.push(value.rate as number);
+            this.movieIdRating.set(value.imdbID, value.rate);
           });
           this.getDataFromImdbApi();
         } else {
@@ -42,7 +40,8 @@ export class MyRatingsPageComponent implements OnInit {
 
   private getDataFromImdbApi() {
     this.moviesFound = new Array<ImbdMovie>();
-    this.moviesIDs.forEach(id => {
+    const movieidRatingKeys = Array.from( this.movieIdRating.keys() );
+    movieidRatingKeys.forEach(id => {
       this.imbdService.getMovie(id).subscribe(res =>
         this.moviesFound.push(Object.assign(new ImbdMovie(), res))
       );

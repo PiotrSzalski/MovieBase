@@ -6,7 +6,7 @@
         <li *ngFor="let movie of moviesFound, index as i">
             <div class="mycard with-rating">
                 <app-movie [movie]="movie"></app-movie>
-                <app-rating-stars [customStyle]="smallRatingsStarsStyle" [movieId]="movie.imdbID" [rate]="moviesRatings[i]"></app-rating-stars>
+                <app-rating-stars [customStyle]="smallRatingsStarsStyle" [movieId]="movie.imdbID" [rate]="movieIdRating.get(movie.imdbID.slice(2))"></app-rating-stars>
 
             </div>
         </li>
