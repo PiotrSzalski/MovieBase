@@ -1,10 +1,13 @@
 <main>
     <div class="mycard">
-        <h1>Top 25</h1>
+        <h1>Top</h1>
     </div>
     <ul>
         <li *ngFor="let movie of moviesTop, index as i">
-            <app-movie [movie]="movie"></app-movie>
+            <div class="mycard with-rating">
+                <app-movie [movie]="movie"></app-movie>
+                <b>Rate {{moviesRatings[i]}}</b>
+            </div>
         </li>
     </ul>
 </main>

@@ -1,6 +1,6 @@
 from flask import Flask, Blueprint, request
 from flask_jwt_extended import create_access_token, decode_token
-from sqlalchemy.sql import text
+from sqlalchemy.sql import text, func
 from project import db
 from project.models.link import Link
 from project.models.rate import Rate
@@ -65,4 +65,20 @@ def getMyRates():
     except Exception as e:
         print(str(e))
         return { "rate": [] }
+
+@action.route('/tops', methods=['GET'])
+def getTops():
+    try:
+        limit = int(request.args.get('limit'))
+        top_rates = db.session.query(Link.imdbID, func.avg(Rate.rate).label('average')).\
+            filter(Rate.movie_id == Link.movie_id).group_by(Link.imdbID).order_by(func.avg(Rate.rate).desc()).limit(limit).all()[limit-10:limit]
+        resultset = [{'imdbID': imdbID, 'rate': rate} for imdbID, rate in top_rates]
+        resultset = json.dumps(resultset)
+        if resultset:
+            return { "tops": resultset }
+        else:
+            return { "tops": []}
+    except Exception as e:
+        print(str(e))
+        return { "tops": [] }
     
