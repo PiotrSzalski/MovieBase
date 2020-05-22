@@ -13,8 +13,13 @@ export class TopMoviesComponent implements OnInit {
   private error: string;
   private moviesIDs: Array<string> = new Array<string>();
   private moviesRatings: Array<number> = new Array<number>();
+  
   public moviesTop: Array<ImbdMovie> = new Array<ImbdMovie>();
-
+  public smallRatingsStarsStyle = {
+    'font-size': "12px",
+    'padding': "3px"
+  };
+  
   constructor(private api: ApiService, private imbdService: ImbdService) { }
   ngOnInit(): void {
       this.getTops();
