@@ -105,6 +105,15 @@ export class ApiService {
     });
     const httpParams = new HttpParams().set("limit", limit);
     return this.http.get(this.baseURL + "/tops", {headers: httpOptions, params: httpParams})
-    }
+  }
 
+  public getRecommendations(token) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        })
+      };
+    return this.http.get(this.baseURL + "/recomendations", httpOptions);
+  }
 }

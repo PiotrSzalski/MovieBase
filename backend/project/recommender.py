@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 from surprise import Reader, Dataset
 from surprise import SVD
@@ -34,17 +33,17 @@ class Recommender:
         algo.fit(trainset)
         self.algo = algo
         self.cached_recommendations = dict()
-        print("Neural network learned")
+        print("Neural network learned.")
         
     def getPredictions(self, user_id):
         if self.cached_recommendations.get(user_id):
             return self.cached_recommendations.get(user_id)
         user_rates = db.session.query(Rate.movie_id).filter_by(user_id=user_id).all()
-        rated_movies = [movie_id for t in user_rates for movie_id in t]
+        rated_movies = [movie_id for tup in user_rates for movie_id in tup]
         predictions = []
         for movie in self.movies:
             if not movie in rated_movies:
-                prediction = self.algo.test([(str(610+user_id),movie,None)]) 
+                prediction = self.algo.test([(str(610+user_id), movie, None)]) 
                 predictions.append((prediction[0].iid,prediction[0].est))
         predictions = sorted(predictions, key=lambda tup: tup[1], reverse=True)[:20]
         predictions = list(list(zip(*predictions[:20]))[0])
@@ -54,8 +53,8 @@ class Recommender:
         return resultset
 
     def was_rate(self):
-        self.counter += 1
-        if self.counter == 2:
+        if self.counter == 5:
             thread = threading.Thread(target = self.learn)
             thread.start()
             self.counter = 0
+        self.counter += 1
