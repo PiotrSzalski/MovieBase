@@ -4,9 +4,12 @@ from sqlalchemy.sql import text, func
 from project import db
 from project.models.link import Link
 from project.models.rate import Rate
+from project.recommender import Recommender
 import json
 
 action = Blueprint('action', __name__)
+
+recommender = Recommender()
 
 @action.route('/search', methods=['GET'])
 def search():
@@ -30,6 +33,7 @@ def rateMovie():
         db.session.add(user_rate)
         db.session.commit()
         db.session.close()
+        recommender.was_rate()
         return { "rated": True }
     except Exception as e:
         print(str(e))
@@ -57,7 +61,6 @@ def getMyRates():
         user_rates = db.session.query(Rate.rate, Link.imdbID).filter_by(user_id=user_id).filter(Rate.movie_id == Link.movie_id).all()
         resultset = [{'imdbID': imdbIDnumber, 'rate': rate} for rate, imdbIDnumber in user_rates]
         resultset = json.dumps(resultset)
-
         if resultset:
             return { "rates": resultset }
         else:
@@ -81,4 +84,13 @@ def getTops():
     except Exception as e:
         print(str(e))
         return { "tops": [] }
+
+@action.route('/recomendations', methods=['GET'])
+def recomendation():
+    try:
+        user_id = decode_token(request.headers.get('Authorization')).get('identity')
+        return json.dumps(recommender.getPredictions(int(user_id)))
+    except Exception as e:
+        print(str(e))
+        return json.dumps([])
     
