@@ -27,7 +27,7 @@ export class PropositionsComponent implements OnInit {
         });
         this.getDataFromImdbApi();
       } else {
-          this.error = "Błąd w trakcie szukania rekomendacji"
+          this.error = "Błąd w trakcie szukania rekomendacji. Prawdopodobnie nie wystawiłaś/eś jeszcze żadnych ocen."
       }
     })
   }

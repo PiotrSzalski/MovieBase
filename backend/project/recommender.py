@@ -4,7 +4,9 @@ from surprise import SVD
 from project import db
 from project.models.link import Link
 from project.models.rate import Rate
+from project.config import BaseConfig
 import threading
+import os.path
 
 class Recommender:
     def __init__(self):
@@ -16,9 +18,15 @@ class Recommender:
         print("Data loaded.")
         self.cached_recommendations = dict()
         self.counter = 0
-        self.learn()
+        if not os.path.exists('./project/' + BaseConfig.MOVIEBASE_DB):
+            print("no database created yet")
+        else:
+            self.learn()
 
     def learn(self):
+        if not db.session.query(Rate).first():
+            print("Nothing to learn on.")
+            return
         print("Neural network is learning...")
         rates = db.session.query(Rate.user_id, Rate.movie_id, Rate.rate).all()
         ratings = self.data
@@ -36,6 +44,9 @@ class Recommender:
         print("Neural network learned.")
         
     def getPredictions(self, user_id):
+        if not db.session.query(Rate).filter_by(user_id=user_id).first():
+            print("Nothing to make predictions from.")
+            return []
         if self.cached_recommendations.get(user_id):
             return self.cached_recommendations.get(user_id)
         user_rates = db.session.query(Rate.movie_id).filter_by(user_id=user_id).all()

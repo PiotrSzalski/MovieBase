@@ -2,10 +2,12 @@ from flask import Flask, Blueprint, request
 from flask_jwt_extended import create_access_token, decode_token
 from sqlalchemy.sql import text, func
 from project import db
+from project.models.user import User
 from project.models.link import Link
 from project.models.rate import Rate
 from project.recommender import Recommender
 import json
+import datetime
 
 action = Blueprint('action', __name__)
 
@@ -26,10 +28,16 @@ def rateMovie():
         user_id = decode_token(request.headers.get('Authorization')).get('identity')
         movie_id = db.session.query(Link).filter_by(imdbID=json_data.get("imdbId")).first().movie_id
         user_rate = db.session.query(Rate).filter_by(user_id=user_id).filter_by(movie_id=movie_id).first()
+        user = db.session.query(User).filter_by(id=user_id).first()
+        seconds_since_last_rate = (datetime.datetime.now() - user.last_rate).total_seconds()
+        if seconds_since_last_rate < 5:
+            return { "rated": False, "secs": 5 - int(seconds_since_last_rate)}
         if user_rate:
             user_rate.rate = json_data.get('rate')
         else:
             user_rate = Rate(user_id, movie_id, json_data.get('rate'))
+        user.last_rate = datetime.datetime.now()
+        db.session.add(user)
         db.session.add(user_rate)
         db.session.commit()
         db.session.close()
