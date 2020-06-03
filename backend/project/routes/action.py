@@ -93,12 +93,23 @@ def getTops():
         print(str(e))
         return { "tops": [] }
 
+def get_count(q):
+    count_q = q.statement.with_only_columns([func.count()]).order_by(None)
+    count = q.session.execute(count_q).scalar()
+    return count
+
 @action.route('/recomendations', methods=['GET'])
 def recomendation():
     try:
         user_id = decode_token(request.headers.get('Authorization')).get('identity')
-        return json.dumps(recommender.getPredictions(int(user_id)))
+        user_rates_count = get_count(db.session.query(Rate).filter_by(user_id=user_id))
+        print(user_rates_count)
+        if user_rates_count < 5:
+            return {"recomendations": [], "count": user_rates_count}
+        resultset = json.dumps(recommender.getPredictions(int(user_id)))
+        if resultset:
+            return { "recomendations": resultset, "count": user_rates_count}
     except Exception as e:
         print(str(e))
-        return json.dumps([])
+        return { "recomendations": [], "count": -1}
     

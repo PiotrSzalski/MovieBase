@@ -18,6 +18,7 @@ class Recommender:
         print("Data loaded.")
         self.cached_recommendations = dict()
         self.counter = 0
+        self.learned = False
         if not os.path.exists('./project/' + BaseConfig.MOVIEBASE_DB):
             print("no database created yet")
         else:
@@ -42,8 +43,12 @@ class Recommender:
         self.algo = algo
         self.cached_recommendations = dict()
         print("Neural network learned.")
+        self.learned = True
         
     def getPredictions(self, user_id):
+        if not self.learned:
+            print("Neural network not learned yet.")
+            return []
         if not db.session.query(Rate).filter_by(user_id=user_id).first():
             print("Nothing to make predictions from.")
             return []

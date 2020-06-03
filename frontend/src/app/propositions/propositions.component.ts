@@ -20,14 +20,21 @@ export class PropositionsComponent implements OnInit {
   ngOnInit() {
     const token = localStorage.getItem("token")
     this.api.getRecommendations(token).subscribe(res => {
-      const list = Object.values(res);
+      console.log(res);
+      const list = JSON.parse(res["recomendations"]);
       if (list.length > 0) {
+        this.error = ""
         list.forEach(value => {
-          this.recommendations.push(value.imdbID as string)
+          this.recommendations.push(value.imdbID as string);
         });
         this.getDataFromImdbApi();
       } else {
-          this.error = "Błąd w trakcie szukania rekomendacji. Prawdopodobnie nie wystawiłaś/eś jeszcze żadnych ocen."
+        if (res["count"] == 0)
+          this.error = "Nie wystawiłaś/eś jeszcze żadnych ocen.";
+        else if (res["count"] < 5)
+          this.error = "Nie wystawiłaś/eś jeszcze pięciu ocen.";
+        else
+          this.error = "Błąd w trakcie szukania rekomendacji."
       }
     })
   }
