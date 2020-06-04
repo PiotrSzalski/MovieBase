@@ -3,7 +3,9 @@ from project import flask_app, db
 from project.models.movie import Movie
 from project.models.link import Link
 from project.models.rate import Rate
+from project.models.comment import Comment
 import csv
+from sqlalchemy import exc
 
 manager = Manager(flask_app)
 

@@ -1,0 +1,35 @@
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #f8f9fa;
+  font-family: 'CustomFont';
+  font-size: 4em; }
+
+.explanation {
+  color: #1a1919ef;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'CustomFont';
+  font-size: 3em; }
+
+h3 {
+  color: #f8f9fa; }
+
+.yellow {
+  color: #e9fc40be; }
+
+.blue {
+  color: #1ed0f481; }
+
+.white {
+  color: #f8f9fa; }
+
+.orange {
+  color: orange; }
+
+i {
+  margin: 40px 40px;
+  font-size: 1em;
+  color: white; }
+
+/*# sourceMappingURL=main-page.component.css.map */

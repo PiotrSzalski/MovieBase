@@ -8,6 +8,7 @@ class Movie(db.Model):
     title = db.Column(db.String(80), unique=False, nullable=True)
     genres = db.Column(db.String(80), unique=False, nullable=True)
     link = db.relationship('Link', backref='movie', lazy=True)
+    comments = db.relationship('Comment', backref='movie', lazy='dynamic')
     
     def __init__(self, id, title, genres):
         self.id = id

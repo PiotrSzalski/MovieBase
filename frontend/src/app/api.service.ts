@@ -116,4 +116,23 @@ export class ApiService {
       };
     return this.http.get(this.baseURL + "/recomendations", httpOptions);
   }
+
+  public sendComment(token, data) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    return this.http.post<string>(this.baseURL + "/comment", data, httpOptions);
+  }
+
+  public getComments(token, movieId) {
+    const httpOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    const httpParams = new HttpParams().set('movieId', movieId);
+    return this.http.get(this.baseURL + '/comments', {headers: httpOptions, params: httpParams});
+  }
 }

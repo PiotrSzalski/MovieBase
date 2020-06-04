@@ -9,6 +9,7 @@ class User(db.Model):
     email = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     last_rate = db.Column(db.DateTime(), nullable=True)
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     def __init__(self, username, email, password):
         self.username = username

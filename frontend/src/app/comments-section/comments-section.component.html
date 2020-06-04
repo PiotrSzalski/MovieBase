@@ -1,0 +1,18 @@
+<div class="card_comments">
+  <h4 class="flex-auto text-md-left text-center text-info">Komentarze</h4>
+  <form class="new_comment" >
+    <div class="new_comment">
+      <label for="comment_input" class="text-light">Dodaj komentarz</label>
+      <textarea id="comment_input" rows="5"></textarea>
+    </div>
+  </form>
+  <button class="btn btn-outline-light btn-sm action" (click)="comment()" type="button">Wyślij</button>
+
+  <ul class="comments">
+    <li *ngFor="let com of comments, index as i">
+      <div class="comment">
+          <app-comment [comment]="com"></app-comment>
+      </div>
+    </li>
+  </ul>
+</div>

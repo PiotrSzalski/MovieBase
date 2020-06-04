@@ -1,0 +1,13 @@
+ul.comments {
+  list-style-type: none;
+  padding-left: 0; }
+
+div.new_comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px; }
+
+button.action {
+  margin-bottom: 5px; }
+
+/*# sourceMappingURL=comments-section.component.css.map */
