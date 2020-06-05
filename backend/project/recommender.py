@@ -20,7 +20,7 @@ class Recommender:
         self.counter = 0
         self.learned = False
         if not os.path.exists('./project/' + BaseConfig.MOVIEBASE_DB):
-            print("no database created yet")
+            print("No database created yet")
         else:
             self.learn()
 
@@ -69,8 +69,8 @@ class Recommender:
         return resultset
 
     def was_rate(self):
+        self.counter += 1
         if self.counter == 5:
             thread = threading.Thread(target = self.learn)
             thread.start()
             self.counter = 0
-        self.counter += 1

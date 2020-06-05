@@ -110,7 +110,6 @@ def recomendation():
     try:
         user_id = decode_token(request.headers.get('Authorization')).get('identity')
         user_rates_count = get_count(db.session.query(Rate).filter_by(user_id=user_id))
-        print(user_rates_count)
         if user_rates_count < 5:
             return {"recomendations": [], "count": user_rates_count}
         resultset = json.dumps(recommender.getPredictions(int(user_id)))
@@ -156,7 +155,7 @@ def getComments():
             for c in film_comments.items]
 
         if resultset:
-            return {'comments': resultset, 'page': page, 'pages':film_comments.pages}
+            return {'comments': resultset, 'page': page, 'pages': film_comments.pages}
         else:
             return {'comments': []}
     except Exception as e:

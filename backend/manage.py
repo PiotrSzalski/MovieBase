@@ -39,6 +39,7 @@ def load_links():
         finally:
             db.session.commit()
             db.session.close()
+            print("Database created.")
 
 
 def load_movies():

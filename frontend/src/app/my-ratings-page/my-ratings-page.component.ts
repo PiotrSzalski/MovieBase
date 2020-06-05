@@ -46,8 +46,6 @@ export class MyRatingsPageComponent implements OnInit {
         this.moviesFound.push(Object.assign(new ImbdMovie(), res))
       );
     });
-    console.log(this.moviesFound[0]);
-    console.log(this.moviesFound.length);
   }
 
 }

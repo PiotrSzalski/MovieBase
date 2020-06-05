@@ -30,7 +30,6 @@ export class TopMoviesComponent implements OnInit {
     this.api.getTops(token).subscribe((res) => {
       const tops = JSON.parse(Object.values(res)[0]);
       if (tops.length > 0) {
-          console.log(res);
           this.error = '';
           tops.forEach(value => {
             this.moviesIDs.push(value.imdbID as string);
