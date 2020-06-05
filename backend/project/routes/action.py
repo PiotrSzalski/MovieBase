@@ -11,10 +11,6 @@ import json
 import datetime
 
 action = Blueprint('action', __name__)
-
-
-# TODO uncomment that - there was a problem with recommender and comments
-#  (sprawdz czy dziala jak tworzysz nowa baze danych)
 recommender = Recommender()
 
 @action.route('/search', methods=['GET'])
