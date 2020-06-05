@@ -9,6 +9,8 @@ import {Comment} from '../models/Comment';
 })
 export class CommentsSectionComponent implements OnInit {
   @Input() movieId: string;
+  private page = 1;  // current page
+  private pages = 1; // number of pages
   public comments: Array<Comment> = new Array<Comment>();
   constructor(private api: ApiService) { }
 
@@ -33,14 +35,18 @@ export class CommentsSectionComponent implements OnInit {
     }
   }
 
-  private getComments() {
+  private getComments(page = 1) {
     const token = localStorage.getItem('token');
-    this.api.getComments(token, this.movieId).subscribe(res => {
+    this.comments.length = 0;
+    this.api.getComments(token, this.movieId, this.page).subscribe(res => {
+      this.pages = Object.values(res)[2];
+      this.page = Object.values(res)[1];
       const comments = Object.values(res)[0];
       comments.forEach(c => {
         this.comments.push(Object.assign(new Comment(), c));
       });
     });
+
   }
 
 

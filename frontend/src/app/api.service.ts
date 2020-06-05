@@ -127,12 +127,12 @@ export class ApiService {
     return this.http.post<string>(this.baseURL + "/comment", data, httpOptions);
   }
 
-  public getComments(token, movieId) {
+  public getComments(token, movieId, page) {
     const httpOptions = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
     });
-    const httpParams = new HttpParams().set('movieId', movieId);
+    const httpParams = new HttpParams().set('movieId', movieId).set('page', page);
     return this.http.get(this.baseURL + '/comments', {headers: httpOptions, params: httpParams});
   }
 }

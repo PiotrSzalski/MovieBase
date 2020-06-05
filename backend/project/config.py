@@ -10,3 +10,4 @@ class BaseConfig(object):
     MOVIEBASE_DB = 'moviebase.db'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, MOVIEBASE_DB)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    COMMENTS_PER_PAGE = 5

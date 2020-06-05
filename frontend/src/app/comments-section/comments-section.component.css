@@ -10,4 +10,9 @@ div.new_comment {
 button.action {
   margin-bottom: 5px; }
 
+ul.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
 /*# sourceMappingURL=comments-section.component.css.map */

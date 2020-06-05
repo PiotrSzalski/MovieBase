@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request
+from flask import Flask, Blueprint, request, current_app
 from flask_jwt_extended import create_access_token, decode_token
 from sqlalchemy.sql import text, func
 from project import db
@@ -11,6 +11,7 @@ import json
 import datetime
 
 action = Blueprint('action', __name__)
+
 
 # TODO uncomment that - there was a problem with recommender and comments
 # recommender = Recommender()
@@ -145,16 +146,22 @@ def comment():
 def getComments():
     # TODO pagination, no such user case
     try:
+        page = request.args.get('page', 1, type=int)
         movie_id = db.session.query(Link).filter_by(imdbID=request.args.get('movieId')).first().movie_id
-        film_comments = db.session.query(Comment).filter_by(movie_id=movie_id).all()
+        film_comments = db.session.query(Comment).\
+            filter_by(movie_id=movie_id).\
+            order_by(Comment.created_at.desc()). \
+            paginate(page=page, per_page=current_app.config['COMMENTS_PER_PAGE'])
+
         resultset = [
             {'username': db.session.query(User).filter_by(id=c.user_id).first().username,
              'body': c.body,
              'movie_id': c.movie_id,
              'created_at': c.created_at}
-            for c in film_comments]
+            for c in film_comments.items]
+
         if resultset:
-            return {'comments': resultset}
+            return {'comments': resultset, 'page': page, 'pages':film_comments.pages}
         else:
             return {'comments': []}
     except Exception as e:
