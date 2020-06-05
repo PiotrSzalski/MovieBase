@@ -14,7 +14,8 @@ action = Blueprint('action', __name__)
 
 
 # TODO uncomment that - there was a problem with recommender and comments
-# recommender = Recommender()
+#  (sprawdz czy dziala jak tworzysz nowa baze danych)
+recommender = Recommender()
 
 @action.route('/search', methods=['GET'])
 def search():
@@ -126,7 +127,6 @@ def recomendation():
 
 @action.route('/comment', methods=['POST'])
 def comment():
-    # TODO spam prevention
     try:
         json_data = request.json
         user_id = decode_token(request.headers.get('Authorization')).get('identity')
@@ -144,7 +144,6 @@ def comment():
 
 @action.route('/comments', methods=['GET'])
 def getComments():
-    # TODO pagination, no such user case
     try:
         page = request.args.get('page', 1, type=int)
         movie_id = db.session.query(Link).filter_by(imdbID=request.args.get('movieId')).first().movie_id

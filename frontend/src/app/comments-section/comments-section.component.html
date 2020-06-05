@@ -17,7 +17,8 @@
   </ul>
 
   <nav aria-label="Page navigation example">
-    <ul class="pagination">
+    <ul *ngIf="this.pages > 1" class="pagination">
+
       <li class="page-item page-prev">
         <button *ngIf="this.page > 1" class="btn btn-light" (click)="getComments(page=this.page-1)"> < </button>
         <button *ngIf="this.page <= 1" class="btn btn-light" [disabled]="true" > < </button>
