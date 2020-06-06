@@ -1,0 +1,25 @@
+.card_comment {
+
+  background: #ffffff;
+  margin-bottom: 10px;
+}
+
+header.comment_header{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+
+  background: #ebf2fb;
+  .comment_username{
+    padding: 5px 20px 5px 10px;
+  }
+  .comment_date{
+    padding: 5px 10px 5px 10px;
+  }
+}
+
+article.body{
+  padding: 5px 10px 5px 10px;
+}
+

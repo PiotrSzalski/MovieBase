@@ -105,6 +105,34 @@ export class ApiService {
     });
     const httpParams = new HttpParams().set("limit", limit);
     return this.http.get(this.baseURL + "/tops", {headers: httpOptions, params: httpParams})
-    }
+  }
 
+  public getRecommendations(token) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': token
+        })
+      };
+    return this.http.get(this.baseURL + "/recomendations", httpOptions);
+  }
+
+  public sendComment(token, data) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': token
+      })
+    };
+    return this.http.post<string>(this.baseURL + "/comment", data, httpOptions);
+  }
+
+  public getComments(token, movieId, page) {
+    const httpOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    const httpParams = new HttpParams().set('movieId', movieId).set('page', page);
+    return this.http.get(this.baseURL + '/comments', {headers: httpOptions, params: httpParams});
+  }
 }

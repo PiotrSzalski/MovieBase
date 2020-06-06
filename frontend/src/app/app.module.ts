@@ -15,6 +15,8 @@ import { MoviePageComponent } from './movie-page/movie-page.component';
 import { MyRatingsPageComponent } from './my-ratings-page/my-ratings-page.component';
 import { RatingStarsComponent } from './rating-stars/rating-stars.component';
 import { TopMoviesComponent } from './top-movies/top-movies.component';
+import { CommentsSectionComponent } from './comments-section/comments-section.component';
+import { CommentComponent } from './comment/comment.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -38,7 +40,9 @@ const routes: Routes = [
     MoviePageComponent,
     MyRatingsPageComponent,
     RatingStarsComponent,
-    TopMoviesComponent
+    TopMoviesComponent,
+    CommentsSectionComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,9 @@ from project import flask_app, db
 from project.models.movie import Movie
 from project.models.link import Link
 from project.models.rate import Rate
+from project.models.comment import Comment
 import csv
+from sqlalchemy import exc
 
 manager = Manager(flask_app)
 
@@ -37,6 +39,7 @@ def load_links():
         finally:
             db.session.commit()
             db.session.close()
+            print("Database created.")
 
 
 def load_movies():

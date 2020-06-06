@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,WAAY;EACV,eAAe,EAAE,IAAI;EACrB,YAAY,EAAE,CAAC;;AAIjB,eAAe;EACb,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,aAAa,EAAE,GAAG;;AAGpB,aAAa;EACX,aAAa,EAAE,GAAG;;AAGpB,aAAa;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;EACnB,eAAe,EAAE,aAAa",
+"sources": ["comments-section.component.scss"],
+"names": [],
+"file": "comments-section.component.css"
+}

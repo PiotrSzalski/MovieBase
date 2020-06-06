@@ -1,15 +1,15 @@
 <main>
     <div class="mycard" *ngIf="!registerMode">
         <h1>Logowanie</h1>
-        <form>
+        <form (keydown.enter)="$event.preventDefault()">
             <div>
                 <label for="username">Nazwa użytkownika</label>
-                <input type="text" id="username" required>
+                <input type="text" id="username" (keydown.enter)="login()" required>
             </div>
 
             <div>
                 <label for="password">Hasło</label>
-                <input type="password" id="password" required>
+                <input type="password" id="password" (keydown.enter)="login()" required>
             </div>
             <p class="error"> {{error}} </p>
         </form>
@@ -21,7 +21,7 @@
 
     <div class="mycard" *ngIf="registerMode">
         <h1>Rejestracja</h1>
-        <form>
+        <form (keydown.enter)="$event.preventDefault()">
             <div>
                 <label for="username">Nazwa użytkownika:</label>
                 <input type="text" id="username" required>
@@ -36,7 +36,7 @@
             </div>
             <div>
                 <label for="password2">Powtórz hasło:</label>
-                <input type="password" id="password2" required>
+                <input type="password" id="password2" (keydown.enter)="register()" required>
             </div>
             <p class="error">{{error}}</p>
         </form>

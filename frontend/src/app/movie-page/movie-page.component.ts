@@ -43,6 +43,10 @@ export class MoviePageComponent implements OnInit {
 
   selectRate(rate) {
     const token = localStorage.getItem("token");
+    //spam prevention
+    if (this.rate == rate)
+      return;
+    let prev_rate = this.rate;
     this.rate = rate;
     if(token) {
       const data = {
@@ -52,6 +56,18 @@ export class MoviePageComponent implements OnInit {
       this.api.sendRate(token, data).subscribe( res => {
         if(res["rated"]) {
           this.rated = "Dziękujemy za ocenę.";
+        } else if (res["secs"]) {
+          this.rate = prev_rate;
+          (<HTMLInputElement>document.getElementById("star-"+this.rate)).checked = true;
+          this.rated = "Za szybko! Poczekaj ";
+          if (res["secs"] === 0)
+            this.rated += "chwileczkę."
+          else if (res["secs"] === 1)
+            this.rated += "sekundkę.";
+          else if (res["secs"] === 5)
+            this.rated += "5 sekund.";
+          else
+            this.rated += res["secs"] + " sekundy.";
         } else {
           this.rated = "Wystapił błąd przy wysyłaniu oceny.";
         }
