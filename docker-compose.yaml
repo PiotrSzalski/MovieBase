@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  backend-service:
+    build: ./backend
+    ports:
+      - 5000:5000
+
+  frontend-service:
+    build: ./frontend
+    volumes:
+      - ./frontend:/usr/src/app
+    ports:
+      - 4200:4200
+    depends_on:
+      - backend-service
+
+

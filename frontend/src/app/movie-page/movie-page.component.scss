@@ -48,6 +48,7 @@ label.star:hover {
     margin-top: 10px;
     box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
     box-sizing: border-box;
+    margin: 10px 0 30px 0;
     &_left {
         float: left;
         overflow: hidden;
@@ -63,6 +64,7 @@ label.star:hover {
         height: 400px;
         border-radius: 0 10px 10px 0;
         box-sizing: border-box;
+        margin-top: 30px;
         h1 {
             color: white;
             font-family: 'Montserrat', sans-serif;
@@ -74,6 +76,7 @@ label.star:hover {
             height: 60px;
         }
         &_details {
+            margin-top: 30px;
             box-sizing: border-box;
             height: 50px;
             ul {
@@ -118,6 +121,6 @@ label.star:hover {
     }
 }
 
-.comments_section{
-  width: 60%;
+.comments_section {
+    width: 60%;
 }

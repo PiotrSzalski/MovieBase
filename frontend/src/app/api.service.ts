@@ -9,7 +9,7 @@ export class ApiService {
   private baseURL;
 
   constructor(private http: HttpClient) {
-    this.baseURL = "http://localhost:5000";
+    this.baseURL = "http://0.0.0.0:5000";
   }
 
   public login(username: string, password: string) {

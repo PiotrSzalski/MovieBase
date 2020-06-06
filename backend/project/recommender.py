@@ -7,6 +7,7 @@ from project.models.rate import Rate
 from project.config import BaseConfig
 import threading
 import os.path
+import sqlalchemy as sa
 
 class Recommender:
     def __init__(self):
@@ -22,10 +23,12 @@ class Recommender:
         if not os.path.exists('./project/' + BaseConfig.MOVIEBASE_DB):
             print("No database created yet")
         else:
+            print(os.path.exists('./project/' + BaseConfig.MOVIEBASE_DB))
             self.learn()
 
     def learn(self):
-        if not db.session.query(Rate).first():
+        engine = db.engine
+        if sa.inspect(engine).get_table_names() == [] or not db.session.query(Rate).first():
             print("Nothing to learn on.")
             return
         print("Neural network is learning...")
