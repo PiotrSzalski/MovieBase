@@ -6,7 +6,7 @@ Web application, which provides ability to register, sigin in, search for movie,
 
 ## Architecture
 
-![Basic Architecture Diagram](doc/diagram.PNG)
+![Basic Architecture Diagram](doc/diagram.png)
 
 ## Usage
 
